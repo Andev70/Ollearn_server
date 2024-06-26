@@ -1,12 +1,11 @@
 import { Result } from "../models/user/userTest";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
-export const createResult = async (req:Request, res:Response) => {
+export const createResult = async (req: Request, res: Response) => {
   try {
     const { testname, testid } = req.body;
     const { authorization } = req.headers;
     const { token } = req.cookies;
-    console.log(token);
     if (!authorization || !testid || !testname) {
       return res.status(401).json({
         success: false,
@@ -28,7 +27,10 @@ export const createResult = async (req:Request, res:Response) => {
         message: "unauthorized user",
       });
     }
-    const jwtVerified:any = jwt.verify(token, process.env.JWT_SECRET as string);
+    const jwtVerified: any = jwt.verify(
+      token,
+      process.env.JWT_SECRET as string
+    );
     if (!jwtVerified) {
       return res.status(401).json({
         success: false,
@@ -39,7 +41,7 @@ export const createResult = async (req:Request, res:Response) => {
     const existingUserTest = await Result.findOne({
       testId: testid,
       testName: testname,
-      userId: jwtVerified.id ,
+      userId: jwtVerified.id,
     });
     if (existingUserTest) {
       return res.status(201).json({ success: true, status: "ok" });

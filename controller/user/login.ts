@@ -2,7 +2,7 @@ import { Student } from "../../models/user/userModel";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
-export const loginStudent = async (req:Request, res:Response) => {
+export const loginStudent = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     if (!email && !password) {
@@ -46,11 +46,18 @@ export const loginStudent = async (req:Request, res:Response) => {
         message: "Incorrect password try again",
       });
     }
-    const jwt_token = jwt.sign({ id: student._id }, process.env.JWT_SECRET as string, {
-      expiresIn: "30d",
-    });
+    const jwt_token = jwt.sign(
+      { id: student._id },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: "30d",
+      }
+    );
 
-    res.cookie("token", jwt_token, { maxAge: 90000000, httpOnly: true });
+    res.cookie("token", jwt_token, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    });
     return res.status(200).json({
       status: "ok",
       success: true,
