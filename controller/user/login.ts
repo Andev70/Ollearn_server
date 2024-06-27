@@ -57,6 +57,8 @@ export const loginStudent = async (req: Request, res: Response) => {
     res.cookie("token", jwt_token, {
       maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
+      secure: true,
+      path: "/",
     });
     return res.status(200).json({
       status: "ok",
