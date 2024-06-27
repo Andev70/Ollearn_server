@@ -3,6 +3,7 @@ import express from "express";
 import { GetAllTests } from "../../controller/getTests";
 import { getOneQuestion } from "../../controller/getQuestion";
 import { getTestResult } from "../../controller/getResult";
+import { pushResult } from "../../controller/pushResult";
 const mcqTestRouter = express.Router();
 
 mcqTestRouter.route("/tests/unique").get(GetAllTests);
@@ -11,4 +12,5 @@ mcqTestRouter
   .get(getOneQuestion);
 mcqTestRouter.route("/create/result").post(createResult);
 mcqTestRouter.route("/get/result").post(getTestResult);
+mcqTestRouter.route("/push/answer").post(pushResult);
 export { mcqTestRouter };

@@ -44,6 +44,11 @@ export const createResult = async (req: Request, res: Response) => {
       userId: jwtVerified.id,
     });
     if (existingUserTest) {
+      const emptyResult = await Result.findOneAndUpdate(
+        { testId: testid, testName: testname, userId: jwtVerified.id },
+        { answers: [] }
+      );
+
       return res.status(201).json({ success: true, status: "ok" });
     }
 

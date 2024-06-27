@@ -6,7 +6,6 @@ export const getTestResult = async (req: Request, res: Response) => {
     const { token } = req.cookies;
     const { authorization } = req.headers;
     const { testid, testname } = req.body;
-    console.log(token, authorization, testid, testname);
     if (
       !token ||
       !testid ||
