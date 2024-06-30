@@ -5,6 +5,7 @@ import { connect } from "./db/connect";
 import { mcqTestRouter } from "./routes/mcqTest/route";
 import cookieParser from "cookie-parser";
 import studentRouter from "./routes/student/studentRoute";
+import adminRouter from "./routes/admin/route";
 const port = process.env.PORT || 8080;
 
 const app: Express = express();
@@ -30,3 +31,4 @@ awaitUntillDbRegister();
 
 app.use("/api/v1/student/", studentRouter);
 app.use("/api/v1/", mcqTestRouter);
+app.use("/api/v1/admin/", adminRouter);

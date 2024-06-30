@@ -12,7 +12,7 @@ const mcqTestSchema = new mongoose.Schema(
 
     takenBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "Students" }],
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const Test =

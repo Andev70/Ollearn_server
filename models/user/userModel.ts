@@ -13,8 +13,9 @@ const userSchema = new mongoose.Schema(
     takenTests: { type: mongoose.Schema.Types.ObjectId, ref: "McqTest" },
     classMates: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     dimondStatus: { type: Boolean, default: false },
+    admin: { type: Boolean, default: false },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 export const Student =

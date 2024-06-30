@@ -10,7 +10,7 @@ const questionModel = new mongoose.Schema(
     },
     testName: { type: String, required: true },
 
-    mcq: { type: String, required: true },
+    mcq: { type: String, required: true, unique: true },
     options: [{ type: String, required: true }],
     answer: { type: String, required: true },
   },
