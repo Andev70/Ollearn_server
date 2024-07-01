@@ -11,10 +11,11 @@ const mcqTestSchema = new mongoose.Schema(
     questionCount: { type: Number, required: true, default: 50 },
 
     takenBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "Students" }],
+    premium: { type: Boolean, default: false },
   },
+
   { timestamps: true }
 );
-
 const Test =
   mongoose.models.MsqTest || mongoose.model("McqTest", mcqTestSchema);
 export default Test;

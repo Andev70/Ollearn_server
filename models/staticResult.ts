@@ -4,8 +4,7 @@ const staticResult = new mongoose.Schema(
     testId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "McqTest",
-
-      require: true,
+      required: true,
     },
     testName: { type: String, required: true },
     answers: [{ type: String }],
@@ -14,5 +13,5 @@ const staticResult = new mongoose.Schema(
 );
 
 const StaticResult =
-  mongoose.models.Results || mongoose.model("StaticResult", staticResult);
+  mongoose.models.StaticResult || mongoose.model("StaticResult", staticResult);
 export { StaticResult };

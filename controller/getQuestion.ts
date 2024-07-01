@@ -6,7 +6,6 @@ export const getOneQuestion = async (req: Request, res: Response) => {
     const authentication = req.headers.authorization;
     const { classid, testname, testid } = req.params;
     const { pageKey }: any = req.query;
-
     const numPagekey = +pageKey;
     if (!authentication) {
       return res.status(401).json({
@@ -31,10 +30,6 @@ export const getOneQuestion = async (req: Request, res: Response) => {
       });
     }
     const test = await Test.findById(testid);
-    const question = await Question.findOne({
-      testId: testid,
-      questionNumber: numPagekey,
-    });
 
     if (!test) {
       return res.status(404).json({
@@ -43,6 +38,11 @@ export const getOneQuestion = async (req: Request, res: Response) => {
         message: "no test found with that testid",
       });
     }
+    const question = await Question.findOne({
+      testId: testid,
+      questionNumber: numPagekey,
+    });
+
     if (!question) {
       return res.status(404).json({
         status: "failed",
